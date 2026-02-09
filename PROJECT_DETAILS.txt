@@ -1,0 +1,379 @@
+Tribal Marketplace - Project Details
+
+Project Structure
+
+Root
+- curl
+- package.json
+- query
+
+backend/
+    nodemon.json
+    package-security.json
+    package.json
+    server.js
+    infra/
+        BaseRepository.js
+        CartRepository.js
+        index.js
+        OrderRepository.js
+        ProductRepository.js
+        ReviewRepository.js
+        UserRepository.js
+    middleware/
+        auth.js
+        csrf.js
+        upload.js
+    models/
+        Cart.js
+        Category.js
+        Chat.js
+        Coupon.js
+        Order.js
+        Product.js
+        Review.js
+        User.js
+    routes/
+        admin.js
+        artisans.js
+        auth.js
+        cart.js
+        categories.js
+        chat.js
+        checkout.js
+        notifications.js
+        orders.js
+        payments.js
+        products.js
+        quickActions.js
+        reviews.js
+        users.js
+    services/
+
+frontend/
+    index.html
+    package.json
+    postcss.config.js
+    tailwind.config.js
+    vite.config.js
+    public/
+    src/
+        App.css
+        App.jsx
+        index.css
+        main.jsx
+        api/
+            auth.js
+            axios.js
+        components/
+            Avatar.jsx
+            Cart.jsx
+            CartIcon.jsx
+            CheckoutStepper.jsx
+            ErrorBoundary.jsx
+            Footer.jsx
+            Header.jsx
+            Layout.jsx
+            PopUp.jsx
+            ProductReviews.jsx
+            ProtectedRoleRoute.jsx
+            ProtectedRoute.jsx
+            RelatedProducts.jsx
+            RoleBasedRoute.jsx
+            RoleRedirect.jsx
+            SearchFilter.jsx
+        contexts/
+            AuthContext.jsx
+            CartContext.jsx
+        pages/
+            About.jsx
+            AdminDashboard.jsx
+            AdminOrders.jsx
+            AdminProducts.jsx
+            AdminUsers.jsx
+            ArtisanDashboard.jsx
+            BuyerDashboard.jsx
+            CartPage.jsx
+            Checkout.jsx
+            Contact.jsx
+            DemoCancelOrder.jsx
+            ForgotPassword.jsx
+            Home.jsx
+            Login.jsx
+            NotFound.jsx
+            OrderConfirmation.jsx
+            Orders.jsx
+            OrderTracking.jsx
+            PaymentPage.jsx
+            ProductDetail.jsx
+            Products.jsx
+            Register.jsx
+            ResetPassword.jsx
+            SellerDashboard.jsx
+            UserProfile.jsx
+            Wishlist.jsx
+        services/
+            api.js
+        utils/
+            csrf.js
+            i18n.js
+
+Project Description
+
+Tribal Marketplace is an online e-commerce platform designed to empower tribal artisans by connecting them directly with global customers. The platform facilitates the sale of authentic handcrafted products including jewelry, textiles, pottery, woodwork, metalwork, paintings, and sculptures.
+
+Key Features
+
+For Buyers
+- Browse and search tribal products by category
+- Add items to cart and wishlist
+- Secure checkout with multiple payment options
+- Order tracking and order history
+- Product reviews and ratings
+- Recommended products section
+- Buyer Dashboard with quick actions
+
+For Sellers/Artisans
+- Product management and inventory tracking
+- Order management system
+- Real-time analytics and earnings tracking
+- Seller/Artisan Dashboard
+- Business metrics and performance tracking
+- Quick actions for product management
+
+For Admins
+- Comprehensive dashboard with key metrics
+- User management and verification
+- Product approval system
+- Order management and tracking
+- Analytics and reporting
+- Pending approvals management
+- Artisan verification system
+
+General Features
+- User authentication and authorization
+- Role-based access control (Admin, Seller, Artisan, Buyer)
+- Real-time order status updates
+- Product categorization and filtering
+- Shopping cart functionality
+- Multiple payment methods (COD, UPI, Card, Google Pay, PhonePe, Paytm, PayPal)
+- Contact form and customer support
+- Responsive design with Tailwind CSS
+- Secure API with CSRF protection and rate limiting
+
+Technology Stack
+
+Backend
+- Framework: Express.js (Node.js)
+- Database: MongoDB Atlas
+- Authentication: JWT (JSON Web Tokens)
+- Security: Helmet, CORS, Express Rate Limit, CSRF Protection
+- File Upload: Cloudinary, Multer
+- Email: Nodemailer
+- Real-time Communication: Socket.IO
+- Payment: Razorpay integration
+- Validation: Express Validator
+
+Frontend
+- Framework: React 18.2
+- Build Tool: Vite
+- Styling: Tailwind CSS
+- Component Animation: Framer Motion
+- Icons: React Icons, Lucide React
+- HTTP Client: Axios
+- Form Management: React Hook Form
+- Notifications: React Hot Toast
+- Image Gallery: React Image Gallery
+- Routing: React Router v6
+
+Development Tools
+- Version Control: Git
+- Code Quality: ESLint
+- Task Runner: Concurrently (for concurrent development)
+- Server Reloading: Nodemon
+
+Environment Variables
+
+Backend (.env)
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://[credentials]/tribal-marketplace
+JWT_SECRET=tribal-marketplace-super-secret-jwt-key-2024
+JWT_EXPIRES_IN=7d
+FRONTEND_URL=http://localhost:5173
+MAX_FILE_SIZE=10485760
+UPLOAD_PATH=./uploads
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+EMAIL_SERVICE=gmail
+EMAIL_USERNAME=tribalmarketplace@gmail.com
+EMAIL_PASSWORD=[app-password]
+
+Frontend (.env)
+VITE_API_URL=http://localhost:5000/api
+
+API Routes (summary)
+
+Authentication (/api/auth)
+- POST /register
+- POST /login
+- PUT /profile
+- POST /forgot-password
+- POST /reset-password/:token
+- GET /csrf-token
+
+Products (/api/products)
+- GET / (list with filters)
+- GET /:id (details)
+- POST / (create, auth)
+- PUT /:id (update, auth)
+- DELETE /:id (delete, auth)
+
+Categories (/api/categories)
+- GET /
+- POST / (admin)
+- PUT /:id (admin)
+- DELETE /:id (admin)
+
+Cart (/api/cart)
+- GET / (user cart)
+- POST /add
+- PUT /:itemId
+- DELETE /:itemId
+- DELETE / (clear cart)
+
+Orders (/api/orders)
+- GET / (user orders)
+- POST / (create order)
+- GET /:id
+- PUT /:id (update status, admin)
+- GET /track/:orderId
+
+Users (/api/users)
+- GET /me
+- GET /:id (admin)
+- GET / (all users, admin)
+- PUT /profile
+- PUT /:id (admin)
+
+Admin (/api/admin)
+- GET /dashboard
+- GET /users
+- GET /orders
+- GET /products
+- POST /verify-seller
+- GET /analytics
+
+Reviews (/api/reviews)
+- GET /
+- POST / (auth)
+- PUT /:id (auth)
+- DELETE /:id (auth)
+
+Chat (/api/chat)
+- GET /
+- POST / (auth)
+
+Payments (/api/payments)
+- POST /create (auth)
+
+Artisans (/api/artisans)
+- GET /
+- GET /:id
+
+Quick Actions (/api/quick-actions)
+- GET / (auth)
+
+Database Models (summary)
+
+User
+- Name, email, hashed password
+- Phone, address
+- Role (buyer, seller, artisan, admin)
+- Profile info, tokens, seller info, timestamps
+
+Product
+- Name, description, price
+- Category, seller reference, images, stock
+- Rating, reviews, active status, specs, tags, timestamps
+
+Order
+- Order number, buyer reference, items array
+- Pricing breakdown, shipping/billing, payment status
+- Order status history, tracking, timestamps
+
+Review
+- Product and user refs, rating, title, comment
+- Images, helpful votes, verified purchase, timestamps
+
+Category
+- Name, slug, description, parent, image, SEO, timestamps
+
+Cart
+- User ref, items array, totals, timestamps
+
+Coupon
+- Code, type, value, limits, applicable products, expiration
+
+Chat/Message
+- Participants, product ref, messages, attachments, timestamps
+
+Authentication & Authorization
+
+- JWT-based auth, tokens in localStorage
+- Role-based access control
+- CSRF protection, bcryptjs for hashing
+- Auto-logout on token expiration
+
+UI/UX
+
+- Responsive design, Tailwind CSS
+- Gradient color scheme, smooth animations (Framer Motion)
+- Toast notifications, modal dialogs, loading states
+- Pagination, search & filters, progress bars
+
+Security
+
+- HTTPS-ready env variables
+- CORS, Rate limiting (100 requests per 15 minutes)
+- CSRF tokens, Helmet.js, input validation/sanitation
+- Secure JWT secret management
+
+Deployment
+
+- Backend: Node.js-ready (Heroku, Railway, Render)
+- Frontend: Vite optimized build
+- Database: MongoDB Atlas
+- File Storage: Cloudinary
+- Environment-based config, Nodemon for dev
+
+Getting Started (quick)
+
+Install dependencies
+npm install
+
+Development (running frontend + backend concurrently)
+npm run dev
+
+Backend only
+npm run server
+
+Frontend only
+npm run client
+
+Production build
+npm run build
+
+Start production server
+npm start
+
+Project Vision
+
+1. Empower tribal artisans via direct sales
+2. Preserve cultural heritage via authentic crafts
+3. Ensure fair trade and direct compensation
+4. Promote sustainability and conscious consumption
+5. Create economic opportunities for tribal communities
+6. Bridge rural artisans and global customers
+
+End of PROJECT_DETAILS.txt
