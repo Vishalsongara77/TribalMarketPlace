@@ -11,7 +11,7 @@
     "build": "cd frontend && npm run build",
     "start": "cd backend && npm start",
     "predeploy":"npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d frontend/dist",
 
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
   },
